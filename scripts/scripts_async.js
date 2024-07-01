@@ -1,12 +1,10 @@
 import { Crypto } from "./Crypto.js";
-/* import { leer, escribir, limpiar, jsonToObject, objectToJson } from "./local_storage_async.js"; */
 import { obtenerTodos, obtenerUno, crearUno, actualizarUno, eliminarUno, eliminarTodos } from "./api.js"; 
 import { mostrarSpinner, ocultarSpinner } from "./spinner.js";
 
 let items = [];
 let formulario = null;
 const KEY_STORAGE = "cryptos";
-/* const KEY_STORAGE = "monedas"; */
 
 window.addEventListener("DOMContentLoaded", onInit);
 
@@ -43,9 +41,6 @@ function escuchandoFiltroAlgoritmo() {
 
 async function loadItems() {
     mostrarSpinner();
-    /* let str = await leer(KEY_STORAGE) || "[]"; */
-    /* let str = await obtenerTodos(KEY_STORAGE) || "[]"; */
-    /* const objetos = jsonToObject(str) || []; */
     const objetos = await obtenerTodos(KEY_STORAGE);
 
     objetos.forEach(obj => {
@@ -183,7 +178,6 @@ function editarRegistro(id) {
                     items[itemIndex] = model;
                     const str = objectToJson(items);
                     try {
-                        /* escribir(KEY_STORAGE, str); */
                         actualizarUno(KEY_STORAGE, str);
                         actualizarFormulario();
                         rellenarTabla();
@@ -205,8 +199,6 @@ function borrarRegistro(id) {
       const rta = confirm('¿Desea eliminar este registro?');
       if (rta) {
           mostrarSpinner();
-          /* items.splice(index, 1); */
-          /* escribir(KEY_STORAGE, objectToJson(items)) */
           eliminarUno(id)
               .then(() => {
                 items.splice(index, 1);
@@ -259,9 +251,7 @@ function escuchandoFormulario() {
             if (rta) {
                 mostrarSpinner();
                 items.push(newModel);
-                /* const str = objectToJson(items); */
                 try {
-                    /* await escribir(KEY_STORAGE, str); */
                     const response = await crearUno(newModel);
                     items = await obtenerTodos(KEY_STORAGE) || [];
                     rellenarTabla();
@@ -300,9 +290,7 @@ function escuchandoBtnDeleteAll(){
       const rta = confirm('Desea eliminar por completo todos los items?');
       if (rta) {
           mostrarSpinner();
-          /* items.splice(0, items.length); */
           try {
-              /* await limpiar(KEY_STORAGE); */
               await eliminarTodos();
               items = [];
               rellenarTabla();

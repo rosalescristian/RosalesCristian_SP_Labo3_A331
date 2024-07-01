@@ -50,26 +50,25 @@ header nav ul li a {
 
 footer {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    align-items: center;
     color: white;
     background-color: #333333;
     height: 100px;
     font-size: 15px;
-    text-align: center; /* Alinea el texto al centro */
+    text-align: center;
 }
 
 footer nav ul {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    align-items: center;
     list-style: none;
     padding: 0;
-    margin: 10px 0; /* Añade espacio superior e inferior */
-}
+    margin: 10px 0;
 
 footer nav ul li {
-    margin: 0 10px; /* Añade espacio entre elementos */
+    margin: 0 10px;
 }
 
 footer nav ul li a {
@@ -79,8 +78,7 @@ footer nav ul li a {
 }
 
 footer p {
-    margin: 10px 0; /* Añade espacio superior e inferior */
-}
+    margin: 10px 0;
 
 .container-sections,
 .container-table {
@@ -247,4 +245,4 @@ form {
     .logo {
         margin: 10px;
     }
-}
+}}}
