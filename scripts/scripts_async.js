@@ -44,8 +44,9 @@ function escuchandoFiltroAlgoritmo() {
 async function loadItems() {
     mostrarSpinner();
     /* let str = await leer(KEY_STORAGE) || "[]"; */
-    let str = await obtenerTodos(KEY_STORAGE) || "[]";
-    const objetos = jsonToObject(str) || [];
+    /* let str = await obtenerTodos(KEY_STORAGE) || "[]"; */
+    /* const objetos = jsonToObject(str) || []; */
+    const objetos = await obtenerTodos(KEY_STORAGE);
 
     objetos.forEach(obj => {
         const model = new Crypto(
@@ -203,13 +204,14 @@ function borrarRegistro(id) {
   if (index !== -1) {
       const rta = confirm('¿Desea eliminar este registro?');
       if (rta) {
-          items.splice(index, 1);
           mostrarSpinner();
+          /* items.splice(index, 1); */
           /* escribir(KEY_STORAGE, objectToJson(items)) */
-          eliminarUno(KEY_STORAGE, objectToJson(items))
+          eliminarUno(id)
               .then(() => {
-                  rellenarTabla();
-                  ocultarSpinner();
+                items.splice(index, 1);
+                rellenarTabla();
+                ocultarSpinner();
               })
               .catch((error) => {
                   alert(error);
@@ -257,12 +259,13 @@ function escuchandoFormulario() {
             if (rta) {
                 mostrarSpinner();
                 items.push(newModel);
-                const str = objectToJson(items);
+                /* const str = objectToJson(items); */
                 try {
                     /* await escribir(KEY_STORAGE, str); */
-                    await crearUno(KEY_STORAGE, str);
-                    actualizarFormulario();
+                    const response = await crearUno(newModel);
+                    items = await obtenerTodos(KEY_STORAGE) || [];
                     rellenarTabla();
+                    actualizarFormulario();
                 } catch (error) {
                     alert(error);
                 }
@@ -295,12 +298,13 @@ function escuchandoBtnDeleteAll(){
   const btn = document.getElementById("btn-delete-all");
   btn.addEventListener("click", async (e) => {
       const rta = confirm('Desea eliminar por completo todos los items?');
-      mostrarSpinner();
       if (rta) {
-          items.splice(0, items.length);
+          mostrarSpinner();
+          /* items.splice(0, items.length); */
           try {
               /* await limpiar(KEY_STORAGE); */
               await eliminarTodos();
+              items = [];
               rellenarTabla();
           } catch (error) {
               alert(error);

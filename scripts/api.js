@@ -11,12 +11,6 @@ export function obtenerTodos(clave) {
           const data = JSON.parse(xhr.responseText);
           resolve(data);
         }
-        /* else if(xhr.status === 404){
-          reject(new Error("ERR " + xhr.status + " :" + xhr.statusText));
-        }
-        else if(xhr.status >= 300 && xhr.status >= 400){
-          reject(new Error("ERR " + xhr.status + " :" + xhr.statusText));
-        } -- HAY OTROS STATUS DE RTA */
         else {
           reject(new Error("ERR " + xhr.status + " :" + xhr.statusText));
         }
@@ -30,7 +24,6 @@ export function obtenerTodos(clave) {
 
 export function obtenerUno(id) {
   return new Promise((resolve, reject) => {
-    //open spinner
     const xhr = new XMLHttpRequest();
 
     xhr.addEventListener("readystatechange", function () {
@@ -42,7 +35,6 @@ export function obtenerUno(id) {
           reject(new Error("ERR " + xhr.status + " :" + xhr.statusText));
         }
       }
-      //hide spinner
     });
 
     xhr.open("GET", `${ENDPOINT}/${id}`);
@@ -56,7 +48,7 @@ export function crearUno(data) {
 
     xhr.addEventListener("readystatechange", function () {
       if (xhr.readyState === 4) {
-        if (xhr.status === 201) {  // Status code for created resource is 201
+        if (xhr.status === 200) {
           const responseData = JSON.parse(xhr.responseText);
           resolve(responseData);
         } else {
