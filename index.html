@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="./styles/newStyles.css">
+    <script src="./scripts/scripts_async.js" type="module"></script>
+    <script src="./scripts/spinner.js" type="module"></script>
+    <link rel="icon" href="./images/logo.svg" type="image/x-icon">
+    <title>Crispy Coins</title>
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <div class="container-sections">
+        <section>
+            <fieldset>Informacion de la moneda
+                <form action="" method="post" id="form-item">
+                    <input type="number" name="id" id="id" hidden />
+                    
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="nombre" id="nombre" autocomplete="off" placeholder="Ingrese nombre...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="simbolo">Simbolo:</label>
+                        <input type="text" name="simbolo" id="simbolo" autocomplete="off" placeholder="Ingrese el Simbolo...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precioActual">Precio Actual:</label>
+                        <input type="text" name="precioActual" id="precioActual" autocomplete="off" placeholder="Ingrese Precio...">
+                    </div>
+
+                    <div class="form-group">
+                            <label for="opciones">Tipo de Consenso</label>
+                            <select name="consenso" id="consenso">
+                                <option value="" selected>Seleccione Opcion</option>
+                                <option value="Proof of Work">Proof of Work</option>
+                                <option value="Proof of Stake">Proof of Stake</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad en Circulacion:</label>
+                        <input type="text" name="cantidad" id="cantidad" autocomplete="off" placeholder="Ingrese Cantidad...">
+
+                    <div class="form-group">
+                        <label for="opciones">Algoritmo:</label>
+                        <select name="algoritmo" id="algoritmo">
+                            <option value="" selected>Seleccione Opcion</option>
+                            <option value="SHA-256">SHA-256</option>
+                            <option value="Ethash">Ethash</option>
+                            <option value="Script">Script</option>
+                            <option value="X11">X11</option>
+                        </select>
+                    </div>
+
+                        <label for="web">Sitio Web Oficial:</label>
+                        <input type="text" name="web" id="web" autocomplete="off" placeholder="Ingrese Sitio...">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn">Guardar</button>
+                        <button type="button" id="btn-cancelar" class="btn">Cancelar</button>
+                        <button type="button" id="btn-Eliminar" class="btn">Eliminar</button>
+                    </div>
+                </form>
+            </fieldset>
+        </section>
+    </div>
+
+    <div id="spinner" class="spinner">
+        <img src="./images/logo.svg" alt="Spinner Logo" class="spinner-img">
+    </div>
+
+    <div class="container-table flex">
+        <table id="table-items" class="table-items table-stripped flex">
+            <thead>
+                <tr class="flex" data-id="">
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Simbolo</th>
+                    <th>Fecha Creacion</th>
+                    <th>Precio Actual</th>
+                    <th>Consenso</th>
+                    <th>Cantidad Circulacion</th>
+                    <th>Algoritmo</th>
+                    <th>Sitio Web</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+
+        </table>
+        <button type="button" id="btn-delete-all" class="btn">Borrar todo</button>
+    </div>
+
+    <footer id="footer"></footer>
+
+</body>
+</html>
