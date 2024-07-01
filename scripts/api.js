@@ -1,4 +1,4 @@
-const ENDPOINT = "http://localhost:3000/casas";
+const ENDPOINT = "http://localhost:3000/monedas";
 
 
 export function obtenerTodos(clave) {

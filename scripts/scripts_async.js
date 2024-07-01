@@ -1,11 +1,12 @@
 import { Crypto } from "./Crypto.js";
-import { leer, escribir, limpiar, jsonToObject, objectToJson } from "./local_storage_async.js";
+/* import { leer, escribir, limpiar, jsonToObject, objectToJson } from "./local_storage_async.js"; */
 import { obtenerTodos, obtenerUno, crearUno, actualizarUno, eliminarUno, eliminarTodos } from "./api.js"; 
 import { mostrarSpinner, ocultarSpinner } from "./spinner.js";
 
 let items = [];
 let formulario = null;
 const KEY_STORAGE = "cryptos";
+/* const KEY_STORAGE = "monedas"; */
 
 window.addEventListener("DOMContentLoaded", onInit);
 
@@ -42,7 +43,8 @@ function escuchandoFiltroAlgoritmo() {
 
 async function loadItems() {
     mostrarSpinner();
-    let str = await leer(KEY_STORAGE) || "[]";
+    /* let str = await leer(KEY_STORAGE) || "[]"; */
+    let str = await obtenerTodos(KEY_STORAGE) || "[]";
     const objetos = jsonToObject(str) || [];
 
     objetos.forEach(obj => {
@@ -180,7 +182,8 @@ function editarRegistro(id) {
                     items[itemIndex] = model;
                     const str = objectToJson(items);
                     try {
-                        escribir(KEY_STORAGE, str);
+                        /* escribir(KEY_STORAGE, str); */
+                        actualizarUno(KEY_STORAGE, str);
                         actualizarFormulario();
                         rellenarTabla();
                     } catch (error) {
@@ -202,7 +205,8 @@ function borrarRegistro(id) {
       if (rta) {
           items.splice(index, 1);
           mostrarSpinner();
-          escribir(KEY_STORAGE, objectToJson(items))
+          /* escribir(KEY_STORAGE, objectToJson(items)) */
+          eliminarUno(KEY_STORAGE, objectToJson(items))
               .then(() => {
                   rellenarTabla();
                   ocultarSpinner();
@@ -255,7 +259,8 @@ function escuchandoFormulario() {
                 items.push(newModel);
                 const str = objectToJson(items);
                 try {
-                    await escribir(KEY_STORAGE, str);
+                    /* await escribir(KEY_STORAGE, str); */
+                    await crearUno(KEY_STORAGE, str);
                     actualizarFormulario();
                     rellenarTabla();
                 } catch (error) {
@@ -294,7 +299,8 @@ function escuchandoBtnDeleteAll(){
       if (rta) {
           items.splice(0, items.length);
           try {
-              await limpiar(KEY_STORAGE);
+              /* await limpiar(KEY_STORAGE); */
+              await eliminarTodos();
               rellenarTabla();
           } catch (error) {
               alert(error);
