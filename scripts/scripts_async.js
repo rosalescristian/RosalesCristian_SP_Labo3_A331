@@ -1,5 +1,6 @@
 import { Crypto } from "./Crypto.js";
 import { leer, escribir, limpiar, jsonToObject, objectToJson } from "./local_storage_async.js";
+import { obtenerTodos, obtenerUno, crearUno, actualizarUno, eliminarUno, eliminarTodos } from "./api.js"; 
 import { mostrarSpinner, ocultarSpinner } from "./spinner.js";
 
 let items = [];
