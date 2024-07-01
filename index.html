@@ -9,7 +9,7 @@
     <script src="./scripts/scripts_async.js" type="module"></script>
     <script src="./scripts/spinner.js" type="module"></script>
     <link rel="icon" href="./images/logo.svg" type="image/x-icon">
-    <title>Crispy Coins</title>
+    <title>Crispy Coins SP</title>
 </head>
 
 <body>
@@ -76,6 +76,21 @@
     <div id="spinner" class="spinner">
         <img src="./images/logo.svg" alt="Spinner Logo" class="spinner-img">
     </div>
+
+    <div class="filter-section">
+        <label for="filtro-algoritmo">Filtrar por Algoritmo:</label>
+        <select name="filtro-algoritmo" id="filtro-algoritmo">
+            <option value="" selected>Seleccione Opcion</option>
+            <option value="SHA-256">SHA-256</option>
+            <option value="Ethash">Ethash</option>
+            <option value="Script">Script</option>
+            <option value="X11">X11</option>
+        </select>
+        <div class="precio-promedio">
+            <p>Promedio de Precio: <span id="precio-promedio">N/A</span></p>
+        </div>
+    </div>
+
 
     <div class="container-table flex">
         <table id="table-items" class="table-items table-stripped flex">

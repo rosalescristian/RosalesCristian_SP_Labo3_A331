@@ -17,7 +17,26 @@ function onInit() {
     escuchandoFormulario();
     escuchandoBtnDeleteAll();
     escuchandoClickFila();
+    escuchandoFiltroAlgoritmo();
     loadItems();
+}
+
+function escuchandoFiltroAlgoritmo() {
+    const filtroAlgoritmo = document.getElementById("filtro-algoritmo");
+    filtroAlgoritmo.addEventListener("change", () => {
+        const algoritmoSeleccionado = filtroAlgoritmo.value;
+        if (algoritmoSeleccionado) {
+            const itemsFiltrados = items.filter(item => item.algoritmo === algoritmoSeleccionado);
+            const promedioPrecio = itemsFiltrados.length > 0
+                ? (itemsFiltrados.map(item => parseFloat(item.precioActual)).reduce((a, b) => a + b, 0) / itemsFiltrados.length).toFixed(2)
+                : "N/A";
+            document.getElementById("precio-promedio").textContent = promedioPrecio;
+            rellenarTabla(itemsFiltrados);
+        } else {
+            document.getElementById("precio-promedio").textContent = "N/A";
+            rellenarTabla();
+        }
+    });
 }
 
 async function loadItems() {
@@ -308,7 +327,7 @@ function generarHTMLHeader() {
 
 function generarHTMLFooter() {
     const footerHTML = `
-        <p>Todos los derechos reservados 2024 &copy | By Cristian Rosales - UTN : Laboratorio III - 1er Parcial</p>`;
+        <p>Todos los derechos reservados 2024 &copy | By Cristian Rosales - UTN : Laboratorio III - 2do Parcial</p>`;
     return footerHTML;
 }
 
